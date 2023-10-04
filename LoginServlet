@@ -1,0 +1,38 @@
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+
+@WebServlet("/LoginServlet")
+public class LoginServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    
+    // Hardcoded usernames and passwords (for demonstration purposes)
+    private String[] usernames = {"user1", "user2", "user3"};
+    private String[] passwords = {"pass1", "pass2", "pass3"};
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        boolean isAuthenticated = checkCredentials(username, password);
+
+        if (isAuthenticated) {
+            // Redirect to a success page
+            response.sendRedirect("success.html");
+        } else {
+            // Redirect to a failure page
+            response.sendRedirect("failure.html");
+        }
+    }
+
+    private boolean checkCredentials(String username, String password) {
+        for (int i = 0; i < usernames.length; i++) {
+            if (username.equals(usernames[i]) && password.equals(passwords[i])) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
