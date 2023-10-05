@@ -2,6 +2,7 @@ package com.login;
 
 import javax.servlet.http.HttpServlet;
 
+@WebServlet("/loginServlet")
 public class loginServlet extends HttpServlet{
 	public void service(HttpServletRequest req, HttpServletResponse res)
 	{
