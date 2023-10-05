@@ -1,0 +1,24 @@
+package com.login;
+
+import javax.servlet.http.HttpServlet;
+
+public class loginServlet extends HttpServlet{
+	public void service(HttpServletRequest req, HttpServletResponse res)
+	{
+		String[] usernames = {"user1", "user2", "user3"};
+	    String[] passwords = {"pass1", "pass2", "pass3"};
+	    
+		String u = req.getParameter("username");
+		String p = req.getParameter("password");
+		
+		for(int i =0; i<usernames.length; i++) {
+			if(u.equals(usernames[i]) && p.equals(passwords[i])) {
+				res.sendRedirect("success.html");
+			}
+			else {
+				res.sendRedirect("failure.html");
+			}
+		}
+		}
+	}
+
